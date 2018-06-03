@@ -14,16 +14,33 @@
         <div class="container">
             <h1 id="name"></h1>
         </div>
+        <div class="container" id="div_short_disc">
+            <p class="short_disc">Creativity is a state of mind.</p>
+        </div>
         <img id="img_profile" src="./res/pics/mustangNickFront1.jpg">
         <div class="container" id="div_social">
             <ul class="ul_social">
-                <li class="li_social"><img class="img_social" src="./res/icons/giticon_trin.png"></li>
-                <li class="li_social"><img class="img_social" src="./res/icons/linicon_trin.png"></li>
-                <li class="li_social"><img class="img_social" src="./res/icons/mailicon_trin.png"></li>
-                <li class="li_social"><img class="img_social" src="./res/icons/fbicon.png"></li>
-                <li class="li_social"><img class="img_social" src="./res/icons/instaicon_trin.png"></li>
+                <li class="li_social"><a href="https://github.com/ShauralP" class="a_social"><img class="img_social" src="./res/icons/giticon_trin.png"></a></li>
+                <li class="li_social"><a href="https://www.linkedin.com/in/shaural/" class="a_social"><img class="img_social" src="./res/icons/linicon_trin.png"></a></li>
+                <li class="li_social"><a href="mailto:shaural@live.com" class="a_social"><img class="img_social" src="./res/icons/mailicon_trin.png"></a></li>
+                <li class="li_social"><a href="https://www.facebook.com/shaural" class="a_social"><img class="img_social" src="./res/icons/fbicon.png"></a></li>
+                <li class="li_social"><a href="https://www.instagram.com/shaural/" class="a_social"><img class="img_social" src="./res/icons/instaicon_trin.png"></a></li>
             </ul>
         </div>
+        <!-- Loader -->
+        <script>
+            $(document).ready(function() {
+            //Preloader
+            $(window).on("load", function() {
+            preloaderFadeOutTime = 500;
+            function hidePreloader() {
+            var preloader = $('.spinner-wrapper');
+            preloader.fadeOut(preloaderFadeOutTime);
+            }
+            hidePreloader();
+            });
+            });
+            </script>
     </body>
     <script src="./scripts/indexJS.js"></script>
 </html>
