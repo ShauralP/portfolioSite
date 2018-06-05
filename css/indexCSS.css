@@ -6,7 +6,7 @@ body {
     margin: 0;
     background-image: url('../res/pics/matrix_gif.gif');
     /* background: #000; */
-    /* min-width: 500px; */
+    min-width: 500px;
 }
 /* video { 
     position: fixed;
@@ -38,6 +38,7 @@ body {
 #div_short_disc {
     margin: 0 auto;
     width: 400px;
+    display: block;
 }
 .short_disc {
     font: italic 125% palatino;
@@ -74,32 +75,35 @@ h1 {
     margin: 0;
     padding: 0;
 }
+.img_social:hover {
+    transform: translateY(-7px) !important;
+}
+.a_social {
+    text-decoration: none;
+}
+.a_social:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+    display: block;
+    position: absolute;
+}
 #img_git {
     -webkit-animation-duration: 0.8s;
     -webkit-animation-delay: 0s;
-    /* -webkit-animation-iteration-count: infinite; */
 }
 #img_lin {
     -webkit-animation-duration: 0.8s;
     -webkit-animation-delay: 0.2s;
-    /* -webkit-animation-iteration-count: infinite; */
 }
 #img_mail {
     -webkit-animation-duration: 0.8s;
     -webkit-animation-delay: 0.4s;
-    /* -webkit-animation-iteration-count: infinite; */
 }
 #img_fb {
     -webkit-animation-duration: 0.8s;
     -webkit-animation-delay: 0.6s;
-    /* -webkit-animation-iteration-count: infinite; */
 }
 #img_inst {
     -webkit-animation-duration: 0.8s;
     -webkit-animation-delay: 0.8s;
-    /* -webkit-animation-iteration-count: infinite; */
-}
-
-.img_social:hover {
-    transform: translateY(-10px);
 }
