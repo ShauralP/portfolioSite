@@ -58,7 +58,7 @@ h1 {
 }
 #div_social {
     margin-top: 0;
-    width: 400px;
+    width: 450px;
     border-radius: 0 0 15px 15px;
 }
 .ul_social {
@@ -70,7 +70,7 @@ h1 {
     padding: 5px;
 }
 .img_social {
-    width: 50px;
+    width: 45px;
     height: auto;
     margin: 0;
     padding: 0;
@@ -106,4 +106,12 @@ h1 {
 #img_inst {
     -webkit-animation-duration: 0.8s;
     -webkit-animation-delay: 0.8s;
+}
+#img_phone {
+    -webkit-animation-duration: 0.8s;
+    -webkit-animation-delay: 1s;
+}
+#img_resume {
+    -webkit-animation-duration: 0.8s;
+    -webkit-animation-delay: 1.2s;
 }
