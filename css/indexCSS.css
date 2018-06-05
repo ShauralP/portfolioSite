@@ -4,10 +4,11 @@
 }
 body {
     margin: 0;
-    background: #000;
+    background-image: url('../res/pics/matrix_gif.gif');
+    /* background: #000; */
     /* min-width: 500px; */
 }
-video { 
+/* video { 
     position: fixed;
     top: 50%;
     left: 50%;
@@ -20,9 +21,9 @@ video {
     background: url('') no-repeat;
     background-size: cover;
     transition: 1s opacity;
-}
+} */
 .container {
-    margin: 75px auto 0 auto; 
+    margin: 50px auto 0 auto; 
     text-align: center;
     padding: 2px 4px;
     background: var(--sec-color);
@@ -98,6 +99,7 @@ h1 {
     -webkit-animation-delay: 0.8s;
     /* -webkit-animation-iteration-count: infinite; */
 }
-a:hover {
 
+.img_social:hover {
+    transform: translateY(-10px);
 }
