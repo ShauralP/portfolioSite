@@ -5,14 +5,14 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    focus: true
+    focus: false
   },
   mutations: {
-    focus() {
-      this.focus = true;
+    setFocus(state) {
+      state.focus = true;
     },
-    unfocus() {
-      this.focus = false;
+    unsetFocus(state) {
+      state.focus = false;
     }
   },
   actions: {},

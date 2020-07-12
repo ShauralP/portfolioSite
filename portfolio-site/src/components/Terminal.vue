@@ -1,5 +1,5 @@
 <template>
-  <div class="terminal">
+  <div class="terminal" @click="focus()">
     <Display />
     <CommandLine />
   </div>
@@ -8,12 +8,18 @@
 <script>
 import CommandLine from "./CommandLine";
 import Display from "./Display";
+import store from "../store";
 
 export default {
   name: "Terminal",
   components: {
     CommandLine,
     Display
+  },
+  methods: {
+    focus: function() {
+      store.commit("setFocus");
+    }
   }
 };
 </script>

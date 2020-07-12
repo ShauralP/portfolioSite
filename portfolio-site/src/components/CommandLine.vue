@@ -7,6 +7,7 @@
 
 <script>
 import { mapState } from "vuex";
+import store from "../store";
 
 export default {
   name: "CommandLine",
@@ -19,6 +20,7 @@ export default {
   watch: {
     focus() {
       this.setFocus();
+      store.commit("unsetFocus");
     }
   },
   mounted: function() {
