@@ -1,7 +1,13 @@
 <template>
   <div class="command-line">
     <label>./shaural></label>
-    <input type="text" ref="cli" id="cli" />
+    <input
+      type="text"
+      ref="cli"
+      id="cli"
+      @keyup.enter="submitCommand"
+      v-model="cliInput"
+    />
   </div>
 </template>
 
@@ -11,16 +17,25 @@ import store from "../store";
 
 export default {
   name: "CommandLine",
+  data() {
+    return {
+      cliInput: ""
+    };
+  },
   methods: {
     setFocus: function() {
       this.$refs.cli.focus();
+      store.commit("unsetFocus");
+    },
+    submitCommand: function() {
+      store.commit("appendDisplayText", this.cliInput);
+      this.cliInput = "";
     }
   },
   computed: mapState(["focus"]),
   watch: {
     focus() {
       this.setFocus();
-      store.commit("unsetFocus");
     }
   },
   mounted: function() {

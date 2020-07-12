@@ -5,7 +5,8 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    focus: false
+    focus: false,
+    displayText: []
   },
   mutations: {
     setFocus(state) {
@@ -13,6 +14,9 @@ export default new Vuex.Store({
     },
     unsetFocus(state) {
       state.focus = false;
+    },
+    appendDisplayText(state, text) {
+      state.displayText.push(text);
     }
   },
   actions: {},
