@@ -28,7 +28,7 @@ export default {
       store.commit("unsetFocus");
     },
     submitCommand: function() {
-      store.commit("appendDisplayText", this.cliInput);
+      store.dispatch("commandHandler", this.cliInput);
       this.cliInput = "";
     }
   },
@@ -59,5 +59,7 @@ label {
   outline: none;
   color: green;
   caret-color: green;
+  width: 100%;
+  word-wrap: break-word;
 }
 </style>
