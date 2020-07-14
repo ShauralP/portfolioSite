@@ -28,8 +28,7 @@ const printFiles = (path, args) => {
     if (pathSplit.length < 2 || pathSplit[0] !== "." || pathSplit[1] !== "shaural") {
         return "Invalid path";
     }
-    pathSplit.shift(); // remove .
-    pathSplit.shift(); // remove shaural
+    pathSplit.splice(0, 2); // remove [".", "shaural"]
     let directory = contentJson;
     pathSplit.forEach(dirName => {
         var dirObj = directory.find(obj => {

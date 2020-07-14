@@ -1,1 +1,1 @@
-export const Commands = ["echo", "clear", "cls"];
+export const Commands = ["echo", "clear", "cls", "cat"];
