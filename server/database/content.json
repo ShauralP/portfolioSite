@@ -2,12 +2,12 @@
     {
         "name": "intro",
         "type": "text",
-        "data": "./documents/intro.txt"
+        "data": "\\documents\\intro.txt"
     },
     {
         "name": "aboutMe",
         "type": "text",
-        "data": "./documents/aboutMe.txt"
+        "data": "\\documents\\aboutMe.txt"
     },
     {
         "name": "professional",
@@ -16,12 +16,12 @@
             {
                 "name": "resume",
                 "type": "pdf",
-                "data": "./documents/resume.pdf"
+                "data": "\\documents\\resume.pdf"
             },
             {
                 "name": "factset",
                 "type": "text",
-                "data": "./documents/factset.txt"
+                "data": "\\documents\\factset.txt"
             }
         ]
     },
@@ -59,5 +59,15 @@
                 "data": "https://www.instagram.com/shaural/"
             }
         ]
+    },
+    {
+        "name": "public",
+        "type": "folder",
+        "data": []
+    },
+    {
+        "name": "projects",
+        "type": "folder",
+        "data": []
     }
 ]
