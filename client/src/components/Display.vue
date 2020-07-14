@@ -1,10 +1,12 @@
 <template>
   <div ref="display" class="display">
     <div>Hello, my name is Shaural, welcome to my website...</div>
-    <div v-for="(line, index) in displayText" :key="line + index" id="line">
-      {{ path }}>
-      <div id="innerLine" v-html="line"></div>
-    </div>
+    <div
+      v-for="(line, index) in displayText"
+      :key="line + index"
+      id="line"
+      v-html="line"
+    ></div>
   </div>
 </template>
 
@@ -49,9 +51,5 @@ export default {
 
 #line {
   display: flex;
-}
-
-#innerLine {
-  padding-left: 5px;
 }
 </style>

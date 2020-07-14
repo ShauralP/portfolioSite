@@ -1,25 +1,25 @@
 [
     {
-        "name": "intro",
+        "name": "intro.txt",
         "type": "text",
         "data": "\\documents\\intro.txt"
     },
     {
-        "name": "aboutMe",
+        "name": "aboutMe.txt",
         "type": "text",
         "data": "\\documents\\aboutMe.txt"
     },
     {
-        "name": "professional",
+        "name": "Professional",
         "type": "folder",
         "data": [
             {
-                "name": "resume",
+                "name": "resume.pdf",
                 "type": "pdf",
                 "data": "\\documents\\resume.pdf"
             },
             {
-                "name": "factset",
+                "name": "factset.txt",
                 "type": "text",
                 "data": "\\documents\\factset.txt"
             }
@@ -31,17 +31,13 @@
         "data": [
             {
                 "name": "phone",
-                "type": "text",
+                "type": "phone",
                 "data": "+1 765 684 2398"
             },
             {
                 "name": "email",
-                "type": "link",
+                "type": "email",
                 "data": "shaural@live.com"
-            },
-            {
-                "name": "email",
-                "type": "exec"
             },
             {
                 "name": "linkedIn",
@@ -61,12 +57,12 @@
         ]
     },
     {
-        "name": "public",
+        "name": "Public",
         "type": "folder",
         "data": []
     },
     {
-        "name": "projects",
+        "name": "Projects",
         "type": "folder",
         "data": []
     }

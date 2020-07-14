@@ -1,19 +1,58 @@
 [
     {
         "command": "echo",
-        "function": "echo",
-        "pathRequired": false
+        "pathRequired": false,
+        "server": false,
+        "callback": "appendDisplayText",
+        "args": true
     },
     {
         "command": "cat",
-        "function": "printFiles",
+        "route": "cat",
         "fileTypes": ["text", "link"],
-        "pathRequired": true
+        "pathRequired": true,
+        "args": true,
+        "server": true,
+        "callback": "appendDisplayText"
     },
     {
         "command": "start",
-        "function": "openLink",
+        "route": "cat",
         "fileType": ["link"],
-        "pathRequired": true
+        "pathRequired": true,
+        "args": true,
+        "server": true,
+        "callback": "openLink"
+    },
+    {
+        "command": "ls",
+        "route": "ls",
+        "pathRequired": true,
+        "args": false,
+        "server": true,
+        "callback": "appendDisplayText"
+    },
+    {
+        "command": "cd",
+        "route": "folders",
+        "pathRequired": true,
+        "args": true,
+        "fileType": ["folder"],
+        "server": true,
+        "callback": "changeDirectory"
+    },
+    {
+        "command": "cls",
+        "pathRequired": false,
+        "args": false,
+        "server": false,
+        "callback": "clearDisplayText"
+    },
+    {
+        "command": "clear",
+        "pathRequired": false,
+        "args": false,
+        "server": false,
+        "callback": "clearDisplayText"
     }
 ]

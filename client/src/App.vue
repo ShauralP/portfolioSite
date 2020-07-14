@@ -6,11 +6,15 @@
 
 <script>
 import Terminal from "./components/Terminal.vue";
+import store from "./store";
 
 export default {
   name: "App",
   components: {
     Terminal
+  },
+  mounted: function() {
+    store.dispatch("getCommands");
   }
 };
 </script>
