@@ -7,7 +7,8 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     focus: false,
-    displayText: []
+    displayText: [],
+    path: "./shaural"
   },
   mutations: {
     setFocus(state) {
@@ -23,6 +24,9 @@ export default new Vuex.Store({
     },
     clearDisplayText(state) {
       state.displayText = [];
+    },
+    setPath(state, newPath) {
+      state.path = newPath;
     }
   },
   actions: {

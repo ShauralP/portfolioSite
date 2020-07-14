@@ -1,6 +1,6 @@
 <template>
   <div class="command-line">
-    <label>./shaural></label>
+    <label>{{ path }}></label>
     <input
       type="text"
       ref="cli"
@@ -32,7 +32,7 @@ export default {
       this.cliInput = "";
     }
   },
-  computed: mapState(["focus"]),
+  computed: mapState(["focus", "path"]),
   watch: {
     focus() {
       this.setFocus();

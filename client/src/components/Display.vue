@@ -1,11 +1,10 @@
 <template>
   <div ref="display" class="display">
-    <p>Hello, my name is Shaural, welcome to my website...</p>
-    <div
-      v-for="(line, index) in displayText"
-      :key="line + index"
-      v-html="line"
-    ></div>
+    <div>Hello, my name is Shaural, welcome to my website...</div>
+    <div v-for="(line, index) in displayText" :key="line + index" id="line">
+      {{ path }}>
+      <div id="innerLine" v-html="line"></div>
+    </div>
   </div>
 </template>
 
@@ -15,7 +14,7 @@ import { mapState } from "vuex";
 export default {
   name: "Display",
   computed: {
-    ...mapState(["displayText"]),
+    ...mapState(["displayText", "path"]),
     displayTextLength: function() {
       return this.displayText.length;
     }
@@ -46,5 +45,13 @@ export default {
 /* Hide scrollbar for Chrome, Safari and Opera */
 .display::-webkit-scrollbar {
   display: none;
+}
+
+#line {
+  display: flex;
+}
+
+#innerLine {
+  padding-left: 5px;
 }
 </style>
