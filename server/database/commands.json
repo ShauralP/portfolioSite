@@ -1,0 +1,19 @@
+[
+    {
+        "command": "echo",
+        "numberOfArgs": -1,
+        "function": "echo"
+    },
+    {
+        "command": "cat",
+        "numberOfArgs": -1,
+        "function": "printFiles",
+        "fileTypes": ["text", "link"]
+    },
+    {
+        "command": "start",
+        "numberOfArgs": 1,
+        "function": "openLink",
+        "fileType": ["link"]
+    }
+]
