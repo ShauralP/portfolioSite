@@ -3,6 +3,7 @@ var cors = require('cors');
 var bodyParser = require('body-parser')
 let commandsJson = require('./database/commands.json')
 let contentJson = require('./database/content.json')
+let typesJson = require('./database/types.json')
 var fs = require('fs');
 var app = express()
 
@@ -38,7 +39,10 @@ app.get('/commands/:name?', function (req, res) {
 app.get('/ls/:path', function (req, res) {
    let path = decodeURIComponent(req.params.path);
    let directory = getDirFromPath(path);
-   let fileNames = directory.map(f => f.name);
+   let fileNames = directory.map(f => {
+      var fileType = typesJson.find(t => t.type === f.type);
+      return `<div style="color:${fileType.color};">${f.name}</div>`;
+   });
    res.send(fileNames);
 })
 

@@ -40,17 +40,17 @@
                 "data": "shaural@live.com"
             },
             {
-                "name": "linkedIn",
+                "name": "linkedIn.lnk",
                 "type": "link",
                 "data": "https://www.linkedin.com/in/shaural/"
             },
             {
-                "name": "facebook",
+                "name": "facebook.lnk",
                 "type": "link",
                 "data": "https://www.facebook.com/shaural/"
             },
             {
-                "name": "instagram",
+                "name": "instagram.lnk",
                 "type": "link",
                 "data": "https://www.instagram.com/shaural/"
             }

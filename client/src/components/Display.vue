@@ -51,5 +51,7 @@ export default {
 
 #line {
   display: flex;
+  text-align: left;
+  word-break: break-all;
 }
 </style>

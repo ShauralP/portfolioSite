@@ -23,7 +23,7 @@ export default new Vuex.Store({
         return;
       }
       if (text instanceof Array) {
-        text = text.join(" ");
+        text = text.join("&nbsp;&nbsp;&nbsp;&nbsp;");
       }
       state.displayText.push(text);
     },
@@ -95,7 +95,7 @@ export default new Vuex.Store({
         commit("appendDisplayTextError", resp);
         return;
       }
-      // TODO: better handlind for cd ..
+      // TODO: better handling for cd ..
       if (command === "cd") {
         if (args[0] === "..") {
           commit("changeDirectory", args[0]);

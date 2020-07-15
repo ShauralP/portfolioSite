@@ -1,1 +1,30 @@
-["text", "link", "image", "pdf"]
+[
+    {
+        "type": "text",
+        "color": "white"
+    },
+    {
+        "type": "link",
+        "color": "blue"
+    },
+    {
+        "type": "image",
+        "color": "purple"
+    },
+    {
+        "type": "pdf",
+        "color": "orange"
+    },
+    {
+        "type": "folder",
+        "color": "aqua"
+    },
+    {
+        "type": "email",
+        "color": "red"
+    },
+    {
+        "type": "phone",
+        "color": "yellow"
+    }
+]
