@@ -34,7 +34,7 @@
     },
     {
         "command": "cd",
-        "route": "folders",
+        "route": "cd",
         "pathRequired": true,
         "args": true,
         "fileType": ["folder"],

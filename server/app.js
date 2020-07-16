@@ -36,32 +36,36 @@ app.get('/commands/:name?', function (req, res) {
    res.send(cmdObj);
 })
 
-app.get('/ls/:path', function (req, res) {
+app.get('/ls/:path/:simple?', function (req, res) {
+   let isSimple = true;
+   if (req.params.simple === undefined || req.params.simple === "") {
+      isSimple = false;
+   }
    let path = decodeURIComponent(req.params.path);
    let directory = getDirFromPath(path);
    let fileNames = directory.map(f => {
       var fileType = typesJson.find(t => t.type === f.type);
+      if (isSimple) {
+         return f.name;
+      }
       return `<div style="color:${fileType.color};">${f.name}</div>`;
    });
    res.send(fileNames);
 })
 
-app.get('/folders/:path/:name?', function (req, res) {
+app.get('/cd/:path/:name', function (req, res) {
    let path = decodeURIComponent(req.params.path);
    let folderName = req.params.name;
-   if (folderName === "..") {
-      return res.send("");
-   }
    let directory = getDirFromPath(path);
-   let fileNames = directory.filter(f => f.type === "folder").map(f => f.name);
-   if (folderName) {
-      fileNames = fileNames.find(f => f === folderName);
-      if (fileNames === undefined || fileNames === "") {
-         res.statusMessage = `Folder ${folderName} does not exist in current directory ${path}`;
-         return res.sendStatus(404);
-      }
+   if (folderName === "current" || folderName === "parent") {
+      return res.send(folderName); // TODO: handle this correctly
    }
-   res.send(fileNames);
+   let folder = directory.find(f => f.name === folderName && f.type === "folder");
+   if (folder === undefined) {
+      res.statusMessage = `Folder ${folderName} does not exist in current directory ${path}`;
+      return res.sendStatus(404);
+   }
+   res.json({ "name": folder.name, "data": folder.data.map(f => f.name)});
 })
 
 app.get('/cat/:path/:file', function (req, res) {

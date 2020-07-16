@@ -9,7 +9,9 @@ export default new Vuex.Store({
     focus: false,
     displayText: [],
     path: "./shaural",
-    commands: []
+    commands: [],
+    files: [],
+    parentFiles: [] // TODO: handle this correctly
   },
   mutations: {
     setFocus(state) {
@@ -51,22 +53,30 @@ export default new Vuex.Store({
     setPath(state, newPath) {
       state.path = newPath;
     },
-    changeDirectory(state, newDir) {
-      if (newDir === "..") {
+    changeDirectory(state, dir) {
+      if (dir === undefined || dir === "" || dir === "current") {
+        return;
+      }
+      if (dir === "parent") {
         let splitPath = state.path.split("/");
         if (splitPath.length > 2) {
           splitPath.pop();
         }
         state.path = splitPath.join("/");
+        state.files = state.parentFiles;
         return;
       }
-      if (newDir === undefined || newDir === "") {
-        return;
-      }
-      state.path += "/" + newDir;
+      state.path += "/" + dir.name;
+      state.files = dir.data;
     },
     setCommdands(state, commands) {
       state.commands = commands;
+    },
+    setFiles(state, files) {
+      state.files = files;
+    },
+    setParentFiles(state, files) {
+      state.parentFiles = files;
     }
   },
   actions: {
@@ -75,6 +85,19 @@ export default new Vuex.Store({
         .get("http://localhost:8081/commands")
         .then(response => {
           commit("setCommdands", response.data);
+        })
+        .catch(e => {
+          commit("appendDisplayTextError", e);
+        });
+    },
+    getFiles({ commit, state }) {
+      axios
+        .get(
+          `http://localhost:8081/ls/${encodeURIComponent(state.path)}/simple`
+        )
+        .then(response => {
+          commit("setFiles", response.data);
+          commit("setParentFiles", response.data);
         })
         .catch(e => {
           commit("appendDisplayTextError", e);
@@ -98,10 +121,9 @@ export default new Vuex.Store({
       // TODO: better handling for cd ..
       if (command === "cd") {
         if (args[0] === "..") {
-          commit("changeDirectory", args[0]);
-          return;
+          args[0] = "parent";
         } else if (args[0] === ".") {
-          return;
+          args[0] = "current";
         }
       }
       if (cmdObj.server) {

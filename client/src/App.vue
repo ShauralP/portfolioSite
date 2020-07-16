@@ -15,6 +15,7 @@ export default {
   },
   mounted: function() {
     store.dispatch("getCommands");
+    store.dispatch("getFiles");
   }
 };
 </script>
