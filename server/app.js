@@ -65,24 +65,29 @@ app.get('/cd/:path/:name', function (req, res) {
       res.statusMessage = `Folder ${folderName} does not exist in current directory ${path}`;
       return res.sendStatus(404);
    }
-   res.json({ "name": folder.name, "data": folder.data.map(f => f.name)});
+   res.json({ "name": folder.name, "data": folder.data.map(f => f.name) });
 })
 
-app.get('/cat/:path/:file', function (req, res) {
+app.get('/cat/:path/:file/:type?', function (req, res) {
    let path = decodeURIComponent(req.params.path);
    let file = req.params.file;
    let directory = getDirFromPath(path);
+   let type = req.params.type;
    let fileObj = directory.find(f => f.name === file);
    if (!fileObj) {
       res.statusMessage = `File ${file} not found at path ${path}`;
       return res.sendStatus(404);
+   }
+   if (type && fileObj.type !== type) {
+      res.statusMessage = `Wrong file type, fileType = ${fileObj.type} but need ${type}.`;
+      return res.sendStatus(500);
    }
    if (fileObj.type === "link" || fileObj.type === "phone" || fileObj.type === "email") {
       return res.send(fileObj.data);
    } else if (fileObj.type === "text") {
       return res.send(readFile(fileObj.data));
    }
-   res.statusMessage =`Wrong file type, could not read contents of file ${file}.` 
+   res.statusMessage = `Wrong file type, could not read contents of file ${file}.`;
    res.sendStatus(500);
 })
 
@@ -122,9 +127,9 @@ function readFile(path) {
    const fullPath = __basedir + path
    let ret = "";
    try {
-       ret = fs.readFileSync(fullPath);
+      ret = fs.readFileSync(fullPath);
    } catch (error) {
-       ret = `Error: Could not read file ${fullPath}. ErrorMessage: ${error}`;
+      ret = `Error: Could not read file ${fullPath}. ErrorMessage: ${error}`;
    }
    return ret;
 }

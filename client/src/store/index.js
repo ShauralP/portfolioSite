@@ -77,6 +77,10 @@ export default new Vuex.Store({
     },
     setParentFiles(state, files) {
       state.parentFiles = files;
+    },
+    openLink(state, link) {
+      console.log(link);
+      window.open(link.toString());
     }
   },
   actions: {
@@ -133,8 +137,12 @@ export default new Vuex.Store({
         }
         if (cmdObj.args) {
           args.forEach(arg => {
+            let path = `http://localhost:8081/${pathSuffix}/${arg}`;
+            if (cmdObj.sendType) {
+              path += `/${cmdObj.fileType[0]}`;
+            }
             axios
-              .get(`http://localhost:8081/${pathSuffix}/${arg}`)
+              .get(path)
               .then(response => {
                 commit(cmdObj.callback, response.data);
               })

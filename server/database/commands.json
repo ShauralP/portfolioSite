@@ -9,7 +9,7 @@
     {
         "command": "cat",
         "route": "cat",
-        "fileTypes": ["text", "link"],
+        "fileType": ["text", "link"],
         "pathRequired": true,
         "args": true,
         "server": true,
@@ -22,7 +22,8 @@
         "pathRequired": true,
         "args": true,
         "server": true,
-        "callback": "openLink"
+        "callback": "openLink",
+        "sendType": true
     },
     {
         "command": "ls",
