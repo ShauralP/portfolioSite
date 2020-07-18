@@ -65,5 +65,10 @@
         "name": "Projects",
         "type": "folder",
         "data": []
+    },
+    {
+        "name": "mas.img",
+        "type": "image",
+        "data": "img/mas.jpg"
     }
 ]

@@ -78,9 +78,16 @@ export default new Vuex.Store({
     setParentFiles(state, files) {
       state.parentFiles = files;
     },
-    openLink(state, link) {
-      console.log(link);
-      window.open(link.toString());
+    open(state, file) {
+      if (file.type === "link") {
+        window.open(file.data.toString());
+      }
+      if (file.type === "image") {
+        // handle image -> get from file.data route
+        axios.get(`http://localhost:8081/${file.data}`).then(response => {
+          console.log(response);
+        });
+      }
     }
   },
   actions: {
@@ -138,9 +145,6 @@ export default new Vuex.Store({
         if (cmdObj.args) {
           args.forEach(arg => {
             let path = `http://localhost:8081/${pathSuffix}/${arg}`;
-            if (cmdObj.sendType) {
-              path += `/${cmdObj.fileType[0]}`;
-            }
             axios
               .get(path)
               .then(response => {

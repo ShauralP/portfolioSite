@@ -16,14 +16,13 @@
         "callback": "appendDisplayText"
     },
     {
-        "command": "start",
-        "route": "cat",
-        "fileType": ["link"],
+        "command": "open",
+        "route": "open",
+        "fileType": ["link", "image"],
         "pathRequired": true,
         "args": true,
         "server": true,
-        "callback": "openLink",
-        "sendType": true
+        "callback": "open"
     },
     {
         "command": "ls",

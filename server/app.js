@@ -1,26 +1,29 @@
 var express = require('express');
 var cors = require('cors');
-var bodyParser = require('body-parser')
-let commandsJson = require('./database/commands.json')
-let contentJson = require('./database/content.json')
-let typesJson = require('./database/types.json')
+var bodyParser = require('body-parser');
+let commandsJson = require('./database/commands.json');
+let contentJson = require('./database/content.json');
+let typesJson = require('./database/types.json');
+const path = require('path');
 var fs = require('fs');
-var app = express()
+var app = express();
 
 app.use(cors());
+app.use('/img', express["static"](path.join(__dirname, 'public/images')));
 
-var jsonParser = bodyParser.json()
+var jsonParser = bodyParser.json();
 
 global.__basedir = __dirname;
 
 
 app.get('/', function (req, res) {
-   res.send('SUCCESS')
-})
+   res.send('SUCCESS');
+});
 
 app.get('/statusCheck', function (req, res) {
-   res.send('SUCCESS')
-})
+   res.send('SUCCESS');
+});
+
 
 app.get('/commands/:name?', function (req, res) {
    let cmdName = req.params.name;
@@ -68,19 +71,14 @@ app.get('/cd/:path/:name', function (req, res) {
    res.json({ "name": folder.name, "data": folder.data.map(f => f.name) });
 })
 
-app.get('/cat/:path/:file/:type?', function (req, res) {
+app.get('/cat/:path/:file', function (req, res) {
    let path = decodeURIComponent(req.params.path);
    let file = req.params.file;
    let directory = getDirFromPath(path);
-   let type = req.params.type;
    let fileObj = directory.find(f => f.name === file);
    if (!fileObj) {
       res.statusMessage = `File ${file} not found at path ${path}`;
       return res.sendStatus(404);
-   }
-   if (type && fileObj.type !== type) {
-      res.statusMessage = `Wrong file type, fileType = ${fileObj.type} but need ${type}.`;
-      return res.sendStatus(500);
    }
    if (fileObj.type === "link" || fileObj.type === "phone" || fileObj.type === "email") {
       return res.send(fileObj.data);
@@ -89,7 +87,23 @@ app.get('/cat/:path/:file/:type?', function (req, res) {
    }
    res.statusMessage = `Wrong file type, could not read contents of file ${file}.`;
    res.sendStatus(500);
-})
+});
+
+app.get('/open/:path/:file', function (req, res) {
+   let path = decodeURIComponent(req.params.path);
+   let file = req.params.file;
+   let directory = getDirFromPath(path);
+   let fileObj = directory.find(f => f.name === file);
+   if (!fileObj) {
+      res.statusMessage = `File ${file} not found at path ${path}`;
+      return res.sendStatus(404);
+   }
+   if (fileObj.type === "link" || fileObj.type === "image") {
+      return res.json({ "type": fileObj.type, "data": fileObj.data });
+   }
+   res.statusMessage = `Wrong type, could not open file ${file}.`;
+   res.sendStatus(500);
+});
 
 var server = app.listen(8081, function () {
    var host = server.address().address
