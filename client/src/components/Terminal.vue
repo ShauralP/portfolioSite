@@ -27,6 +27,7 @@ export default {
 <style scoped>
 .terminal {
   margin: auto;
+  margin-top: 25px;
   width: 75%;
   height: 75%;
   border: 3px solid green;

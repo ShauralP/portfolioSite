@@ -11,7 +11,9 @@ export default new Vuex.Store({
     path: "./shaural",
     commands: [],
     files: [],
-    parentFiles: [] // TODO: handle this correctly
+    parentFiles: [], // TODO: handle this correctly
+    modalOpen: false,
+    modalImage: ""
   },
   mutations: {
     setFocus(state) {
@@ -83,11 +85,17 @@ export default new Vuex.Store({
         window.open(file.data.toString());
       }
       if (file.type === "image") {
-        // handle image -> get from file.data route
-        axios.get(`http://localhost:8081/${file.data}`).then(response => {
-          console.log(response);
-        });
+        state.modalImage = `http://localhost:8081/${file.data}`;
+        state.modalOpen = true;
       }
+    },
+    setModalImage(state, imageUrl) {
+      state.modalImage = imageUrl;
+      state.modalOpen = true;
+    },
+    closeModal(state) {
+      state.modalOpen = false;
+      state.modalImage = "";
     }
   },
   actions: {

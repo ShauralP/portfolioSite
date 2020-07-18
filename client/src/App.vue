@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <Modal v-model="modalOpen" :image="modalImage" />
     <Terminal />
   </div>
 </template>
@@ -7,12 +8,16 @@
 <script>
 import Terminal from "./components/Terminal.vue";
 import store from "./store";
+import { mapState } from "vuex";
+import Modal from "./components/Modal.vue";
 
 export default {
   name: "App",
   components: {
-    Terminal
+    Terminal,
+    Modal
   },
+  computed: mapState(["modalOpen", "modalImage"]),
   mounted: function() {
     store.dispatch("getCommands");
     store.dispatch("getFiles");
@@ -28,7 +33,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: green;
-  padding-top: 25px;
   position: fixed;
   width: 100%;
   height: 100%;
