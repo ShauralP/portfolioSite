@@ -96,7 +96,7 @@ export default new Vuex.Store({
       state.modalImage = imageUrl;
       state.modalOpen = true;
     },
-    closeModal(state) {
+    closeImageModal(state) {
       state.modalOpen = false;
       state.modalImage = "";
     },

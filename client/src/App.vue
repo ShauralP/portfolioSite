@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Modal v-model="modalOpen" :image="modalImage" />
+    <ImageModal :value="modalOpen" :image="modalImage" />
     <Terminal />
   </div>
 </template>
@@ -9,13 +9,13 @@
 import Terminal from "./components/Terminal.vue";
 import store from "./store";
 import { mapState } from "vuex";
-import Modal from "./components/Modal.vue";
+import ImageModal from "./components/ImageModal.vue";
 
 export default {
   name: "App",
   components: {
     Terminal,
-    Modal
+    ImageModal
   },
   computed: mapState(["modalOpen", "modalImage"]),
   mounted: function() {

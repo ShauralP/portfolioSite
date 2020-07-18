@@ -8,8 +8,10 @@
 </template>
 
 <script>
+import store from "../store";
+
 export default {
-  name: "Modal",
+  name: "ImageModal",
   props: {
     value: {
       required: true
@@ -20,6 +22,7 @@ export default {
   },
   methods: {
     close() {
+      store.commit("closeImageModal");
       this.$emit("input", !this.value);
     }
   }
