@@ -10,6 +10,7 @@ var app = express();
 
 app.use(cors());
 app.use('/img', express["static"](path.join(__dirname, 'public/images')));
+app.use('/pdf', express["static"](path.join(__dirname, 'public/pdf')));
 
 var jsonParser = bodyParser.json();
 
@@ -98,7 +99,7 @@ app.get('/open/:path/:file', function (req, res) {
       res.statusMessage = `File ${file} not found at path ${path}`;
       return res.sendStatus(404);
    }
-   if (fileObj.type === "link" || fileObj.type === "image") {
+   if (fileObj.type === "link" || fileObj.type === "image" || fileObj.type === "pdf") { // TODO: get types from command obj
       return res.json({ "type": fileObj.type, "data": fileObj.data });
    }
    res.statusMessage = `Wrong type, could not open file ${file}.`;

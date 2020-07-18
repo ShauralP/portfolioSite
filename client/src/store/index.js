@@ -88,6 +88,9 @@ export default new Vuex.Store({
         state.modalImage = `http://localhost:8081/${file.data}`;
         state.modalOpen = true;
       }
+      if (file.type === "pdf") {
+        window.open(`http://localhost:8081/${file.data}`);
+      }
     },
     setModalImage(state, imageUrl) {
       state.modalImage = imageUrl;

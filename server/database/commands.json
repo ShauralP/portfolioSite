@@ -20,7 +20,7 @@
     {
         "command": "open",
         "route": "open",
-        "fileType": ["link", "image"],
+        "fileType": ["link", "image", "pdf"],
         "pathRequired": true,
         "args": true,
         "server": true,

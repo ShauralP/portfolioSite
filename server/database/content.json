@@ -16,7 +16,7 @@
             {
                 "name": "resume.pdf",
                 "type": "pdf",
-                "data": "\\documents\\resume.pdf"
+                "data": "pdf/resume.pdf"
             },
             {
                 "name": "factset.txt",
