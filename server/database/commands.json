@@ -4,7 +4,8 @@
         "pathRequired": false,
         "server": false,
         "callback": "appendDisplayText",
-        "args": true
+        "args": true,
+        "man": "echo - Write arguments to the standard output."
     },
     {
         "command": "cat",
@@ -13,7 +14,8 @@
         "pathRequired": true,
         "args": true,
         "server": true,
-        "callback": "appendDisplayText"
+        "callback": "appendDisplayText",
+        "man": "cat - Concatenate files and print on the standard output."
     },
     {
         "command": "open",
@@ -22,7 +24,8 @@
         "pathRequired": true,
         "args": true,
         "server": true,
-        "callback": "open"
+        "callback": "open",
+        "man": "open [link/image] - Open link in new tab or display image."
     },
     {
         "command": "ls",
@@ -30,7 +33,8 @@
         "pathRequired": true,
         "args": false,
         "server": true,
-        "callback": "appendDisplayText"
+        "callback": "appendDisplayText",
+        "man": "ls - list directory contents." 
     },
     {
         "command": "cd",
@@ -39,20 +43,39 @@
         "args": true,
         "fileType": ["folder"],
         "server": true,
-        "callback": "changeDirectory"
+        "callback": "changeDirectory",
+        "man": "cd [directory] - Change the shell working directory."
     },
     {
         "command": "cls",
         "pathRequired": false,
         "args": false,
         "server": false,
-        "callback": "clearDisplayText"
+        "callback": "clearDisplayText",
+        "man": "cls - Clear the terminal screen."
     },
     {
         "command": "clear",
         "pathRequired": false,
         "args": false,
         "server": false,
-        "callback": "clearDisplayText"
+        "callback": "clearDisplayText",
+        "man": "clear - Clear the terminal screen."
+    },
+    {
+        "command": "man",
+        "pathRequired": false,
+        "args": true,
+        "server": false,
+        "callback": "man",
+        "man": "man [command] - Display command reference manuals."
+    },
+    {
+        "command": "help",
+        "pathRequired": false,
+        "args": true,
+        "server": false,
+        "callback": "help",
+        "man": "help - Display help."
     }
 ]

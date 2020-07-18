@@ -28,7 +28,7 @@ export default {
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -39,5 +39,6 @@ export default {
   left: 0;
   top: 0;
   background-color: black;
+  line-height: 150%;
 }
 </style>

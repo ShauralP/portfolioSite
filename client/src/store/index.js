@@ -96,6 +96,23 @@ export default new Vuex.Store({
     closeModal(state) {
       state.modalOpen = false;
       state.modalImage = "";
+    },
+    man(state, command) {
+      // display man for command
+      command.forEach(cmd => {
+        let cmdObj = state.commands.find(c => c.command === cmd);
+        if (cmdObj) {
+          state.displayText.push(cmdObj.man);
+        } else {
+          state.displayText.push(`Could not find manual for command: ${cmd}`);
+        }
+      });
+    },
+    help(state) {
+      // display all commands + some help text
+      state.commands.forEach(c => {
+        state.displayText.push(c.man);
+      });
     }
   },
   actions: {
