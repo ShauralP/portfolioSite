@@ -77,5 +77,13 @@
         "server": false,
         "callback": "help",
         "man": "help - Display help."
+    },
+    {
+        "command": "email",
+        "pathRequired": false,
+        "args": false,
+        "server": false,
+        "callback": "email",
+        "man": "email - Open a contact form to send an email to Shaural Patel."
     }
 ]

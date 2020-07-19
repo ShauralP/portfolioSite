@@ -12,8 +12,9 @@ export default new Vuex.Store({
     commands: [],
     files: [],
     parentFiles: [], // TODO: handle this correctly
-    modalOpen: false,
-    modalImage: ""
+    imageModalOpen: false,
+    imageModalUrl: "",
+    emailModalOpen: false
   },
   mutations: {
     setFocus(state) {
@@ -85,20 +86,23 @@ export default new Vuex.Store({
         window.open(file.data.toString());
       }
       if (file.type === "image") {
-        state.modalImage = `http://localhost:8081/${file.data}`;
-        state.modalOpen = true;
+        state.imageModalUrl = `http://localhost:8081/${file.data}`;
+        state.imageModalOpen = true;
       }
       if (file.type === "pdf") {
         window.open(`http://localhost:8081/${file.data}`);
       }
     },
     setModalImage(state, imageUrl) {
-      state.modalImage = imageUrl;
-      state.modalOpen = true;
+      state.imageModalUrl = imageUrl;
+      state.imageModalOpen = true;
     },
     closeImageModal(state) {
-      state.modalOpen = false;
-      state.modalImage = "";
+      state.imageModalOpen = false;
+      state.imageModalUrl = "";
+    },
+    closeEmailModal(state) {
+      state.emailModalOpen = false;
     },
     man(state, command) {
       // display man for command
@@ -116,6 +120,10 @@ export default new Vuex.Store({
       state.commands.forEach(c => {
         state.displayText.push(c.man);
       });
+    },
+    email(state) {
+      state.focus = false;
+      state.emailModalOpen = true;
     }
   },
   actions: {

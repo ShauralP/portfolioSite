@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <ImageModal :value="modalOpen" :image="modalImage" />
+    <ImageModal :value="imageModalOpen" :image="imageModalUrl" />
+    <EmailModal :value="emailModalOpen" />
     <Terminal />
   </div>
 </template>
@@ -10,14 +11,16 @@ import Terminal from "./components/Terminal.vue";
 import store from "./store";
 import { mapState } from "vuex";
 import ImageModal from "./components/ImageModal.vue";
+import EmailModal from "./components/EmailModal.vue";
 
 export default {
   name: "App",
   components: {
     Terminal,
-    ImageModal
+    ImageModal,
+    EmailModal
   },
-  computed: mapState(["modalOpen", "modalImage"]),
+  computed: mapState(["imageModalOpen", "imageModalUrl", "emailModalOpen"]),
   mounted: function() {
     store.dispatch("getCommands");
     store.dispatch("getFiles");
@@ -40,5 +43,12 @@ export default {
   top: 0;
   background-color: black;
   line-height: 150%;
+}
+input,
+textarea {
+  background: black;
+  border: none;
+  outline: none;
+  color: green;
 }
 </style>
