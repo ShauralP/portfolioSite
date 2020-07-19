@@ -20,7 +20,7 @@ export default new Vuex.Store({
     setFocus(state) {
       state.focus = true;
     },
-    unsetFocus(state) {
+    unFocus(state) {
       state.focus = false;
     },
     appendDisplayText(state, text) {

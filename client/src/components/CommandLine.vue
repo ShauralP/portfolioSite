@@ -7,10 +7,10 @@
       id="cli"
       @keyup.enter="submitCommand"
       @keydown.tab="autoComplete"
-      @blur="setFocus"
+      @blur="unFocus"
       v-model="cliInput"
     />
-    <input class="hidden" />
+    <input ref="clii" @focus="setFocus" class="hidden" />
   </div>
 </template>
 
@@ -29,7 +29,11 @@ export default {
   methods: {
     setFocus: function() {
       this.$refs.cli.focus();
-      store.commit("unsetFocus");
+    },
+    unFocus: function() {
+      this.$refs.cli.blur();
+      this.$refs.clii.blur();
+      store.commit("unFocus");
     },
     submitCommand: function() {
       store.dispatch("commandHandler", this.cliInput);
@@ -52,8 +56,12 @@ export default {
   },
   computed: mapState(["focus", "path", "files"]),
   watch: {
-    focus() {
-      this.setFocus();
+    focus(isFocussed) {
+      if (isFocussed) {
+        this.setFocus();
+      } else {
+        this.unFocus();
+      }
     },
     files(newFiles) {
       this.suggestion = newFiles;

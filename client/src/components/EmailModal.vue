@@ -13,10 +13,12 @@
             </p>
             <div>
               <label for="name" class="label">Name:</label>
+              <!-- eslint-disable-next-line -->
               <input type="text" id="name" name="name" required maxlength="50" />
             </div>
             <div>
               <label for="email" class="label">Email:</label>
+              <!-- eslint-disable-next-line -->
               <input type="email" id="email" name="email" required maxlength="50" />
             </div>
             <div>
