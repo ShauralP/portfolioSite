@@ -14,17 +14,17 @@
             <div>
               <label for="name" class="label">Name:</label>
               <!-- eslint-disable-next-line -->
-              <input v-model="name" type="text" required maxlength="50" />
+              <input v-model="name" type="text" />
             </div>
             <div>
               <label for="email" class="label">Email:</label>
               <!-- eslint-disable-next-line -->
-              <input v-model="email" type="email" required maxlength="50" />
+              <input v-model="email" type="email" />
             </div>
             <div>
               <label for="subject" class="label">Subject:</label>
               <!-- eslint-disable-next-line -->
-              <input v-model="subject" type="text" required maxlength="50" />
+              <input v-model="subject" type="text" />
             </div>
             <div>
               <label for="name" class="label">Message:</label>
@@ -32,8 +32,6 @@
                 v-model="message"
                 type="textarea"
                 placeholder="Your Message Here"
-                maxlength="6000"
-                rows="7"
               ></textarea>
             </div>
             <button type="submit" @click="sendMail">Send</button>
