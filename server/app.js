@@ -1,6 +1,9 @@
 var express = require('express');
 var cors = require('cors');
+const dotenv = require('dotenv');
+dotenv.config();
 var bodyParser = require('body-parser');
+var nodemailer = require('nodemailer');
 let commandsJson = require('./database/commands.json');
 let contentJson = require('./database/content.json');
 let typesJson = require('./database/types.json');
@@ -13,6 +16,18 @@ app.use('/img', express["static"](path.join(__dirname, 'public/images')));
 app.use('/pdf', express["static"](path.join(__dirname, 'public/pdf')));
 
 var jsonParser = bodyParser.json();
+
+var port = process.env.PORT | 8081;
+
+// For sending emails
+var transporter = nodemailer.createTransport({
+   service: 'hotmail',
+   auth: {
+      user: 'shaural@live.com',
+      pass: process.env.EMAIL_PASS
+   }
+});
+
 
 global.__basedir = __dirname;
 
@@ -106,13 +121,36 @@ app.get('/open/:path/:file', function (req, res) {
    res.sendStatus(500);
 });
 
-var server = app.listen(8081, function () {
+var server = app.listen(port, function () {
    var host = server.address().address
    var port = server.address().port
 
    console.log("Server listening at http://%s:%s", host, port)
 })
+app.post('/mail', jsonParser, function (req, res) {
+   var body = req.body;
+   if (!body.name || !body.email || !body.subject || !body.message) {
+      res.statusMessage = `Could not send email, missing required fields {Name: ${body.name}, Email: ${body.email}, Subject: ${body.subject}, Message: ${body.message}`;
+      return res.sendStatus(500);
+   }
+   var msg = `Sender Name:\t${body.name}\n\nSender Email:\t${body.email}\n\nMessage: ${body.message}`;
+   var mailOptions = {
+      from: 'shaural@live.com',
+      to: 'shaural@live.com',
+      subject: body.subject,
+      text: msg
+   };
 
+   transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+         console.log(error);
+         return res.sendStatus(500);
+      } else {
+         console.log('Email sent: ' + info.response);
+         return res.sendStatus(200);
+      }
+   });
+});
 function getDirFromPath(path) {
    if (!path) {
       res.statusMessage = `Invalid path ${path}`;

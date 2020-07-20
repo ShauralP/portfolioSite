@@ -14,25 +14,29 @@
             <div>
               <label for="name" class="label">Name:</label>
               <!-- eslint-disable-next-line -->
-              <input type="text" id="name" name="name" required maxlength="50" />
+              <input v-model="name" type="text" required maxlength="50" />
             </div>
             <div>
               <label for="email" class="label">Email:</label>
               <!-- eslint-disable-next-line -->
-              <input type="email" id="email" name="email" required maxlength="50" />
+              <input v-model="email" type="email" required maxlength="50" />
+            </div>
+            <div>
+              <label for="subject" class="label">Subject:</label>
+              <!-- eslint-disable-next-line -->
+              <input v-model="subject" type="text" required maxlength="50" />
             </div>
             <div>
               <label for="name" class="label">Message:</label>
               <textarea
+                v-model="message"
                 type="textarea"
-                name="message"
-                id="message"
                 placeholder="Your Message Here"
                 maxlength="6000"
                 rows="7"
               ></textarea>
             </div>
-            <button type="submit" id="btnContactUs">Send</button>
+            <button type="submit" @click="sendMail">Send</button>
           </form>
         </div>
       </div>
@@ -51,10 +55,32 @@ export default {
       required: true
     }
   },
+  data() {
+    return {
+      name: "",
+      email: "",
+      subject: "",
+      message: ""
+    };
+  },
   methods: {
+    sendMail() {
+      var body = {
+        name: this.name,
+        email: this.email,
+        subject: this.subject,
+        message: this.message
+      };
+      store.dispatch("sendEmail", body);
+      this.close();
+    },
     close() {
       store.commit("closeEmailModal");
       this.$emit("input", !this.value);
+      this.name = "";
+      this.email = "";
+      this.subject = "";
+      this.message = "";
     }
   }
 };

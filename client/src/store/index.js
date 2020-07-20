@@ -127,6 +127,16 @@ export default new Vuex.Store({
     }
   },
   actions: {
+    sendEmail({ commit }, body) {
+      axios
+        .post("http://localhost:8081/mail", body)
+        .then(() => {
+          commit("appendDisplayText", "Email sent.");
+        })
+        .catch(e => {
+          commit("appendDisplayTextError", e);
+        });
+    },
     getCommands({ commit }) {
       axios
         .get("http://localhost:8081/commands")
