@@ -1,0 +1,37 @@
+[
+    {
+        "type": "text",
+        "color": "white",
+        "default": "cat"
+    },
+    {
+        "type": "link",
+        "color": "blue",
+        "default": "open"
+    },
+    {
+        "type": "image",
+        "color": "purple",
+        "default": "open"
+    },
+    {
+        "type": "pdf",
+        "color": "orange",
+        "default": "open"
+    },
+    {
+        "type": "folder",
+        "color": "aqua",
+        "default": "cdls"
+    },
+    {
+        "type": "email",
+        "color": "red",
+        "default": "email"
+    },
+    {
+        "type": "phone",
+        "color": "yellow",
+        "default": "cat"
+    }
+]

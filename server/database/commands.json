@@ -1,0 +1,99 @@
+[
+    {
+        "command": "echo",
+        "pathRequired": false,
+        "server": false,
+        "callback": "appendDisplayText",
+        "args": true,
+        "man": "echo - Write arguments to the standard output."
+    },
+    {
+        "command": "cat",
+        "route": "cat",
+        "fileType": ["text", "link"],
+        "pathRequired": true,
+        "args": true,
+        "server": true,
+        "callback": "appendDisplayText",
+        "man": "cat - Concatenate files and print on the standard output."
+    },
+    {
+        "command": "open",
+        "route": "open",
+        "fileType": ["link", "image", "pdf"],
+        "pathRequired": true,
+        "args": true,
+        "server": true,
+        "callback": "open",
+        "man": "open [link/image] - Open link in new tab or display image."
+    },
+    {
+        "command": "ls",
+        "route": "ls",
+        "pathRequired": true,
+        "args": false,
+        "server": true,
+        "callback": "appendDisplayText",
+        "man": "ls - list directory contents." 
+    },
+    {
+        "command": "cd",
+        "route": "cd",
+        "pathRequired": true,
+        "args": true,
+        "fileType": ["folder"],
+        "server": true,
+        "callback": "changeDirectory",
+        "man": "cd [directory] - Change the shell working directory."
+    },
+    {
+        "command": "cdls",
+        "route": "cdls",
+        "pathRequired": true,
+        "args": true,
+        "fileType": ["folder"],
+        "server": true,
+        "callback": "changeDirectoryListFiles",
+        "man": "cdls [directory] - Change the shell working directory and list files."
+    },
+    {
+        "command": "cls",
+        "pathRequired": false,
+        "args": false,
+        "server": false,
+        "callback": "clearDisplayText",
+        "man": "cls - Clear the terminal screen."
+    },
+    {
+        "command": "clear",
+        "pathRequired": false,
+        "args": false,
+        "server": false,
+        "callback": "clearDisplayText",
+        "man": "clear - Clear the terminal screen."
+    },
+    {
+        "command": "man",
+        "pathRequired": false,
+        "args": true,
+        "server": false,
+        "callback": "man",
+        "man": "man [command] - Display command reference manuals."
+    },
+    {
+        "command": "help",
+        "pathRequired": false,
+        "args": true,
+        "server": false,
+        "callback": "help",
+        "man": "help - Display help."
+    },
+    {
+        "command": "email",
+        "pathRequired": false,
+        "args": false,
+        "server": false,
+        "callback": "email",
+        "man": "email - Open a contact form to send an email to Shaural Patel."
+    }
+]
