@@ -55,6 +55,20 @@ app.get('/commands/:name?', function (req, res) {
    res.send(cmdObj);
 })
 
+function listFiles(isSimple, directory) {
+   return directory.map(f => {
+      var fileType = typesJson.find(t => t.type === f.type);
+      if (isSimple) {
+         return f.name;
+      }
+      var defaultCommand = fileType.default;
+      if (commandsJson.find(c => c.command === defaultCommand).args) {
+         defaultCommand += ` ${f.name}`;
+      }
+      return `<div style="color:${fileType.color};cursor:pointer;" onclick="defaultCommand('${defaultCommand}')">${f.name}</div>`;
+   });
+}
+
 app.get('/ls/:path/:simple?', function (req, res) {
    let isSimple = true;
    if (req.params.simple === undefined || req.params.simple === "") {
@@ -62,15 +76,12 @@ app.get('/ls/:path/:simple?', function (req, res) {
    }
    let path = decodeURIComponent(req.params.path);
    let directory = getDirFromPath(path);
-   let fileNames = directory.map(f => {
-      var fileType = typesJson.find(t => t.type === f.type);
-      if (isSimple) {
-         return f.name;
-      }
-      return `<div style="color:${fileType.color};">${f.name}</div>`;
-   });
-   res.send(fileNames);
+   res.send(listFiles(isSimple, directory));
 })
+
+function cd(directory, folderName) {
+   return directory.find(f => f.name === folderName && f.type === "folder");
+};
 
 app.get('/cd/:path/:name', function (req, res) {
    let path = decodeURIComponent(req.params.path);
@@ -79,13 +90,23 @@ app.get('/cd/:path/:name', function (req, res) {
    if (folderName === "current" || folderName === "parent") {
       return res.send(folderName); // TODO: handle this correctly
    }
-   let folder = directory.find(f => f.name === folderName && f.type === "folder");
-   if (folder === undefined) {
-      res.statusMessage = `Folder ${folderName} does not exist in current directory ${path}`;
-      return res.sendStatus(404);
-   }
+   var folder = cd(directory, folderName);
    res.json({ "name": folder.name, "data": folder.data.map(f => f.name) });
-})
+});
+
+app.get('/cdls/:path/:name', function(req, res) {
+   let path = decodeURIComponent(req.params.path);
+   let folderName = req.params.name;
+   let directory = getDirFromPath(path);
+   var folder = cd(directory, folderName);
+   directory = getDirFromPath(`${path}/${folder.name}`);
+   var ls = listFiles(false, directory);
+   return res.json({
+      "name": folder.name,
+      "data": folder.data.map(f => f.name),
+      "lsData": ls
+   });
+});
 
 app.get('/cat/:path/:file', function (req, res) {
    let path = decodeURIComponent(req.params.path);

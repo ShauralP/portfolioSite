@@ -12,6 +12,7 @@
 
 <script>
 import { mapState } from "vuex";
+import store from "../store";
 
 export default {
   name: "Display",
@@ -25,12 +26,19 @@ export default {
     // TODO: Not scrolling all the way till the end, fix this
     scrollToEnd: function() {
       this.$refs.display.scrollTop = this.$refs.display.scrollHeight;
+    },
+    async defaultCommand(command) {
+      console.log(command);
+      await store.dispatch("commandHandler", command);
     }
   },
   watch: {
     displayTextLength: function() {
       this.scrollToEnd();
     }
+  },
+  created: function() {
+    window.defaultCommand = this.defaultCommand;
   }
 };
 </script>

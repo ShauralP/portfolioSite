@@ -72,6 +72,21 @@ export default new Vuex.Store({
       state.path += "/" + dir.name;
       state.files = dir.data;
     },
+    changeDirectoryListFiles(state, dir) {
+      if (dir === undefined || dir === "") {
+        return;
+      }
+      state.path += "/" + dir.name;
+      state.files = dir.data;
+      var text = dir.lsData;
+      if (text === null || text === "") {
+        return;
+      }
+      if (text instanceof Array) {
+        text = text.join("&nbsp;&nbsp;&nbsp;&nbsp;");
+      }
+      state.displayText.push(text);
+    },
     setCommdands(state, commands) {
       state.commands = commands;
     },

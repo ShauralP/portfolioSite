@@ -47,6 +47,16 @@
         "man": "cd [directory] - Change the shell working directory."
     },
     {
+        "command": "cdls",
+        "route": "cdls",
+        "pathRequired": true,
+        "args": true,
+        "fileType": ["folder"],
+        "server": true,
+        "callback": "changeDirectoryListFiles",
+        "man": "cdls [directory] - Change the shell working directory and list files."
+    },
+    {
         "command": "cls",
         "pathRequired": false,
         "args": false,

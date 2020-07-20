@@ -1,30 +1,37 @@
 [
     {
         "type": "text",
-        "color": "white"
+        "color": "white",
+        "default": "cat"
     },
     {
         "type": "link",
-        "color": "blue"
+        "color": "blue",
+        "default": "open"
     },
     {
         "type": "image",
-        "color": "purple"
+        "color": "purple",
+        "default": "open"
     },
     {
         "type": "pdf",
-        "color": "orange"
+        "color": "orange",
+        "default": "open"
     },
     {
         "type": "folder",
-        "color": "aqua"
+        "color": "aqua",
+        "default": "cdls"
     },
     {
         "type": "email",
-        "color": "red"
+        "color": "red",
+        "default": "email"
     },
     {
         "type": "phone",
-        "color": "yellow"
+        "color": "yellow",
+        "default": "cat"
     }
 ]
